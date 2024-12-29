@@ -32,7 +32,7 @@ Node* bt_insert(Node *root, int v)
     return root;
 }
 
-bool isLeaf(Node root) 
+bool is_leaf(Node root) 
 {
     return root.left == NULL && root.right == NULL;
 }
@@ -93,7 +93,7 @@ Node* bt_delete(int v, Node *root)
         root->right = bt_delete(v, root->right);
     } else {
         // no children
-        if (isLeaf(*root)) {
+        if (is_leaf(*root)) {
             printf("delete %d\n", v);
             free(root);
             return NULL;
@@ -181,15 +181,17 @@ int main()
 
     printf("---------------------------------\n");
     bt_insert(&root, 2);
-    bt_insert(&root, 7);
-    bt_insert(&root, 6);
     bt_insert(&root, 5);
-    bt_insert(&root, 9);
+    bt_insert(&root, 4);
+    bt_insert(&root, 1);
+    bt_insert(&root, 8);
+    bt_insert(&root, 3);
     printf("---------------------------------\n");
     printf("Height %d\n", bt_height(&root));
     printf("---------------------------------\n");
     Node dst = {0};
     bt_search(6, root, &dst);
+    bt_search(3, root, &dst);
     bt_search(5, root, &dst);
     printf("---------------------------------\n");
     bt_delete(6, &root);
